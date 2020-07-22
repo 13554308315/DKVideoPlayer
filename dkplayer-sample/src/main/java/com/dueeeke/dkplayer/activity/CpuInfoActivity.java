@@ -18,7 +18,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * CPU信息
+ * CPU信息1
  */
 public class CpuInfoActivity extends BaseActivity {
 
