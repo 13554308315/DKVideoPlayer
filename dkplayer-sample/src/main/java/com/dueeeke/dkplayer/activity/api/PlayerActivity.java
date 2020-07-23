@@ -2,7 +2,9 @@ package com.dueeeke.dkplayer.activity.api;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -31,6 +33,8 @@ import com.dueeeke.videoplayer.util.L;
 
 public class PlayerActivity extends BaseActivity<VideoView> {
 
+    private static String TAG = "PlayerActivity";
+
     private static final String THUMB = "https://cms-bucket.nosdn.127.net/eb411c2810f04ffa8aaafc42052b233820180418095416.jpeg";
 
     public static void start(Context context, String url, String title, boolean isLive) {
@@ -46,9 +50,11 @@ public class PlayerActivity extends BaseActivity<VideoView> {
         return R.layout.activity_player;
     }
 
+
     @Override
     protected void initView() {
         super.initView();
+
         mVideoView = findViewById(R.id.player);
 
         Intent intent = getIntent();
@@ -77,6 +83,7 @@ public class PlayerActivity extends BaseActivity<VideoView> {
                 VodControlView vodControlView = new VodControlView(this);//点播控制条
                 //是否显示底部进度条。默认显示
 //                vodControlView.showBottomProgress(false);
+
                 controller.addControlComponent(vodControlView);
             }
 
@@ -109,6 +116,7 @@ public class PlayerActivity extends BaseActivity<VideoView> {
             //在LogCat显示调试信息
             controller.addControlComponent(new PlayerMonitor());
 
+
             //如果你不想要UI，不要设置控制器即可
             mVideoView.setVideoController(controller);
 
@@ -119,6 +127,7 @@ public class PlayerActivity extends BaseActivity<VideoView> {
             //播放状态监听
             mVideoView.addOnStateChangeListener(mOnStateChangeListener);
 
+
             //临时切换播放核心，如需全局请通过VideoConfig配置，详见MyApplication
             //使用IjkPlayer解码
 //            mVideoView.setPlayerFactory(IjkPlayerFactory.create());
@@ -127,8 +136,13 @@ public class PlayerActivity extends BaseActivity<VideoView> {
             //使用MediaPlayer解码
 //            mVideoView.setPlayerFactory(AndroidMediaPlayerFactory.create());
 
+
+
+//设置全屏
+            mVideoView.startFullScreen();
             mVideoView.start();
         }
+
 
         //播放其他视频
         EditText etOtherVideo = findViewById(R.id.et_other_video);
@@ -147,8 +161,11 @@ public class PlayerActivity extends BaseActivity<VideoView> {
         public void onPlayerStateChanged(int playerState) {
             switch (playerState) {
                 case VideoView.PLAYER_NORMAL://小屏
+                    Log.e(TAG,"小屏====>");
+                    finish();
                     break;
                 case VideoView.PLAYER_FULL_SCREEN://全屏
+                    Log.e(TAG,"全屏====>");
                     break;
             }
         }

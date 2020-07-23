@@ -49,7 +49,7 @@
         <activity
             android:name=".activity.api.PlayerActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|screenLayout"
-            android:screenOrientation="portrait"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".activity.extend.DanmakuActivity"

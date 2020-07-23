@@ -53,13 +53,44 @@
             android:textColor="@android:color/white"
             android:textSize="@dimen/dkplayer_controller_time_text_size"
             tools:text="00:00" />
-
+        <!---->
+        <TextView
+            android:paddingLeft="8dp"
+            android:paddingRight="4dp"
+            android:gravity="center"
+            android:id="@+id/tv_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/dkplayer_theme_color"
+            android:textSize="@dimen/dkplayer_controller_icon_padding"
+            android:text="原速" />
+        <TextView
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:gravity="center"
+            android:id="@+id/tv_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/dkplayer_controller_icon_padding"
+            android:text="1.5倍" />
+        <TextView
+            android:paddingLeft="4dp"
+            android:gravity="center"
+            android:id="@+id/tv_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/dkplayer_controller_icon_padding"
+            android:text="2倍" />
+        <!---->
         <ImageView
             android:id="@+id/fullscreen"
             android:layout_width="@dimen/dkplayer_controller_height"
             android:layout_height="@dimen/dkplayer_controller_height"
             android:padding="@dimen/dkplayer_controller_icon_padding"
             android:src="@drawable/dkplayer_selector_full_screen_button" />
+
     </LinearLayout>
 
     <ProgressBar

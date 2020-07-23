@@ -14,6 +14,7 @@ import java.util.List;
 public class DataUtil {
 
     public static final String SAMPLE_URL = "http://vfx.mtime.cn/Video/2019/03/14/mp4/190314223540373995.mp4";
+    public static final String TEST_RRL="http://www.whxjy01.com:8181/ykt/profile/%E8%AF%BE%E7%A8%8B/%E7%8E%8B%E5%90%8E%E9%9B%84%E9%AB%98%E4%B8%AD%E5%9F%BA%E7%A1%80%E8%AF%BE/%E4%BC%98%E8%B6%8A/%E7%A7%8B%E5%AD%A3%E7%8F%AD/%E9%AB%98%E4%BA%8C/%E8%AF%AD%E6%96%87/%E9%9F%A9%E5%BF%97%E4%B8%B0/9.%E9%AB%98%E8%80%83%E9%98%85%E8%AF%BB%E5%8F%8A%E4%BD%9C%E6%96%87.mp4";
 //    public static final String SAMPLE_URL = "file:///mnt/sdcard/out.webm";
 
 //    public static List<VideoBean> getVideoList() {

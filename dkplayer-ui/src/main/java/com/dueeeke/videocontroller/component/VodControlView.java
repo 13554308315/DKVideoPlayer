@@ -32,7 +32,7 @@ import static com.dueeeke.videoplayer.util.PlayerUtils.stringForTime;
  * 点播底部控制栏
  */
 public class VodControlView extends FrameLayout implements IControlComponent, View.OnClickListener, SeekBar.OnSeekBarChangeListener {
-    
+
     protected ControlWrapper mControlWrapper;
 
     private TextView mTotalTime, mCurrTime;
@@ -46,6 +46,8 @@ public class VodControlView extends FrameLayout implements IControlComponent, Vi
 
     private boolean mIsShowBottomProgress = true;
 
+    private TextView tv_1, tv_2, tv_3;
+
     public VodControlView(@NonNull Context context) {
         super(context);
     }
@@ -57,8 +59,8 @@ public class VodControlView extends FrameLayout implements IControlComponent, Vi
     public VodControlView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
-    
-    
+
+
     {
         setVisibility(GONE);
         LayoutInflater.from(getContext()).inflate(getLayoutId(), this, true);
@@ -72,6 +74,12 @@ public class VodControlView extends FrameLayout implements IControlComponent, Vi
         mPlayButton = findViewById(R.id.iv_play);
         mPlayButton.setOnClickListener(this);
         mBottomProgress = findViewById(R.id.bottom_progress);
+        tv_1 = findViewById(R.id.tv_1);
+        tv_1.setOnClickListener(this);
+        tv_2 = findViewById(R.id.tv_2);
+        tv_2.setOnClickListener(this);
+        tv_3 = findViewById(R.id.tv_3);
+        tv_3.setOnClickListener(this);
 
         //5.1以下系统SeekBar高度需要设置成WRAP_CONTENT
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1) {
@@ -154,6 +162,7 @@ public class VodControlView extends FrameLayout implements IControlComponent, Vi
                 } else {
                     mBottomContainer.setVisibility(GONE);
                 }
+
                 setVisibility(VISIBLE);
                 //开始刷新进度
                 mControlWrapper.startProgress();
@@ -165,6 +174,7 @@ public class VodControlView extends FrameLayout implements IControlComponent, Vi
             case VideoView.STATE_BUFFERED:
                 mPlayButton.setSelected(mControlWrapper.isPlaying());
                 break;
+
         }
     }
 
@@ -239,6 +249,21 @@ public class VodControlView extends FrameLayout implements IControlComponent, Vi
             toggleFullScreen();
         } else if (id == R.id.iv_play) {
             mControlWrapper.togglePlay();
+        } else if (id == R.id.tv_1) {
+            mControlWrapper.setSpeed(1.0f);
+            tv_1.setTextColor(getResources().getColor(R.color.dkplayer_theme_color));
+            tv_2.setTextColor(getResources().getColor(R.color.white));
+            tv_3.setTextColor(getResources().getColor(R.color.white));
+        } else if (id == R.id.tv_2) {
+            mControlWrapper.setSpeed(1.5f);
+            tv_1.setTextColor(getResources().getColor(R.color.white));
+            tv_2.setTextColor(getResources().getColor(R.color.dkplayer_theme_color));
+            tv_3.setTextColor(getResources().getColor(R.color.white));
+        } else if (id == R.id.tv_3) {
+            mControlWrapper.setSpeed(2.0f);
+            tv_1.setTextColor(getResources().getColor(R.color.white));
+            tv_2.setTextColor(getResources().getColor(R.color.white));
+            tv_3.setTextColor(getResources().getColor(R.color.dkplayer_theme_color));
         }
     }
 
