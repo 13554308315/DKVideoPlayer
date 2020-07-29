@@ -8,11 +8,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.dueeeke.dkplayer.R;
 import com.dueeeke.dkplayer.activity.BaseActivity;
 import com.dueeeke.dkplayer.util.IntentKeys;
+import com.dueeeke.dkplayer.util.ProgressManagerImpl;
 import com.dueeeke.dkplayer.widget.component.DebugInfoView;
 import com.dueeeke.dkplayer.widget.component.PlayerMonitor;
 import com.dueeeke.videocontroller.StandardVideoController;
@@ -23,8 +26,17 @@ import com.dueeeke.videocontroller.component.LiveControlView;
 import com.dueeeke.videocontroller.component.PrepareView;
 import com.dueeeke.videocontroller.component.TitleView;
 import com.dueeeke.videocontroller.component.VodControlView;
+import com.dueeeke.videoplayer.BuildConfig;
+import com.dueeeke.videoplayer.exo.ExoMediaPlayerFactory;
+import com.dueeeke.videoplayer.ijk.IjkPlayerFactory;
+import com.dueeeke.videoplayer.player.AndroidMediaPlayerFactory;
+import com.dueeeke.videoplayer.player.PlayerFactory;
 import com.dueeeke.videoplayer.player.VideoView;
+import com.dueeeke.videoplayer.player.VideoViewConfig;
+import com.dueeeke.videoplayer.player.VideoViewManager;
 import com.dueeeke.videoplayer.util.L;
+
+import java.lang.reflect.Field;
 
 /**
  * 播放器演示
@@ -33,7 +45,7 @@ import com.dueeeke.videoplayer.util.L;
 
 public class PlayerActivity extends BaseActivity<VideoView> {
 
-    private static String TAG = "PlayerActivity";
+    public static String TAG = "PlayerActivity";
 
     private static final String THUMB = "https://cms-bucket.nosdn.127.net/eb411c2810f04ffa8aaafc42052b233820180418095416.jpeg";
 
@@ -45,11 +57,11 @@ public class PlayerActivity extends BaseActivity<VideoView> {
         context.startActivity(intent);
     }
 
+
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_player;
     }
-
 
     @Override
     protected void initView() {
@@ -65,7 +77,7 @@ public class PlayerActivity extends BaseActivity<VideoView> {
 
             PrepareView prepareView = new PrepareView(this);//准备播放界面
             ImageView thumb = prepareView.findViewById(R.id.thumb);//封面图
-            Glide.with(this).load(THUMB).into(thumb);
+//            Glide.with(this).load(THUMB).into(thumb);
             controller.addControlComponent(prepareView);
 
             controller.addControlComponent(new CompleteView(this));//自动完成播放界面
@@ -83,6 +95,17 @@ public class PlayerActivity extends BaseActivity<VideoView> {
                 VodControlView vodControlView = new VodControlView(this);//点播控制条
                 //是否显示底部进度条。默认显示
 //                vodControlView.showBottomProgress(false);
+
+                vodControlView.setOnTimerChangeListener(new VodControlView.OnTimerChangeListener() {
+                    @Override
+                    public void onChange(int time) {
+                        Log.e("PlayerActivity", time / 1000 + "==>");
+                        if (time / 1000 > 480 && Boolean.valueOf(intent.getStringExtra("isBuy")) == false) {
+                            Toast.makeText(PlayerActivity.this,"试看结束，请联系购买该课程！",Toast.LENGTH_LONG).show();
+                            finish();
+                        }
+                    }
+                });
 
                 controller.addControlComponent(vodControlView);
             }
@@ -137,7 +160,6 @@ public class PlayerActivity extends BaseActivity<VideoView> {
 //            mVideoView.setPlayerFactory(AndroidMediaPlayerFactory.create());
 
 
-
 //设置全屏
             mVideoView.startFullScreen();
             mVideoView.start();
@@ -161,11 +183,11 @@ public class PlayerActivity extends BaseActivity<VideoView> {
         public void onPlayerStateChanged(int playerState) {
             switch (playerState) {
                 case VideoView.PLAYER_NORMAL://小屏
-                    Log.e(TAG,"小屏====>");
+                    Log.e(TAG, "小屏====>");
                     finish();
                     break;
                 case VideoView.PLAYER_FULL_SCREEN://全屏
-                    Log.e(TAG,"全屏====>");
+                    Log.e(TAG, "全屏====>");
                     break;
             }
         }
@@ -256,4 +278,6 @@ public class PlayerActivity extends BaseActivity<VideoView> {
                 break;
         }
     }
+
+
 }

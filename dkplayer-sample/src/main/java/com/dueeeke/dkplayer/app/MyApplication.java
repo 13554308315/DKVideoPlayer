@@ -2,6 +2,8 @@ package com.dueeeke.dkplayer.app;
 
 import android.app.Application;
 
+import androidx.multidex.MultiDex;
+
 import com.dueeeke.videoplayer.BuildConfig;
 import com.dueeeke.videoplayer.ijk.IjkPlayerFactory;
 import com.dueeeke.videoplayer.player.VideoViewConfig;
@@ -38,6 +40,9 @@ public class MyApplication extends Application {
 //            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());
 //            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll().penaltyLog().build());
 //        }
+
+
+        MultiDex.install(this);
     }
 
     public static MyApplication getInstance() {

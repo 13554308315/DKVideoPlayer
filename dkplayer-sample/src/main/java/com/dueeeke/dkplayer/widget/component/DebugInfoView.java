@@ -66,8 +66,8 @@ public class DebugInfoView extends AppCompatTextView implements IControlComponen
 
     @Override
     public void onPlayStateChanged(int playState) {
-        setText(getDebugString(playState));
-        bringToFront();
+//        setText(getDebugString(playState));
+//        bringToFront();
     }
 
     /**
