@@ -49,7 +49,7 @@ public class VodControlView extends FrameLayout implements IControlComponent, Vi
 
     private boolean mIsShowBottomProgress = true;
 
-    private TextView tv_1, tv_2, tv_3;
+    private TextView tv_1, tv_2, tv_3,tv_4,tv_5;
 
     public VodControlView(@NonNull Context context) {
         super(context);
@@ -83,6 +83,10 @@ public class VodControlView extends FrameLayout implements IControlComponent, Vi
         tv_2.setOnClickListener(this);
         tv_3 = findViewById(R.id.tv_3);
         tv_3.setOnClickListener(this);
+        tv_4 = findViewById(R.id.tv_4);
+        tv_4.setOnClickListener(this);
+        tv_5 = findViewById(R.id.tv_5);
+        tv_5.setOnClickListener(this);
 
         //5.1以下系统SeekBar高度需要设置成WRAP_CONTENT
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1) {
@@ -271,16 +275,36 @@ public class VodControlView extends FrameLayout implements IControlComponent, Vi
             tv_1.setTextColor(getResources().getColor(R.color.dkplayer_theme_color));
             tv_2.setTextColor(getResources().getColor(R.color.white));
             tv_3.setTextColor(getResources().getColor(R.color.white));
+            tv_4.setTextColor(getResources().getColor(R.color.white));
+            tv_5.setTextColor(getResources().getColor(R.color.white));
         } else if (id == R.id.tv_2) {
-            mControlWrapper.setSpeed(1.5f);
+            mControlWrapper.setSpeed(1.25f);
             tv_1.setTextColor(getResources().getColor(R.color.white));
             tv_2.setTextColor(getResources().getColor(R.color.dkplayer_theme_color));
             tv_3.setTextColor(getResources().getColor(R.color.white));
+            tv_4.setTextColor(getResources().getColor(R.color.white));
+            tv_5.setTextColor(getResources().getColor(R.color.white));
         } else if (id == R.id.tv_3) {
-            mControlWrapper.setSpeed(2.0f);
+            mControlWrapper.setSpeed(1.5f);
             tv_1.setTextColor(getResources().getColor(R.color.white));
             tv_2.setTextColor(getResources().getColor(R.color.white));
             tv_3.setTextColor(getResources().getColor(R.color.dkplayer_theme_color));
+            tv_4.setTextColor(getResources().getColor(R.color.white));
+            tv_5.setTextColor(getResources().getColor(R.color.white));
+        } else if (id == R.id.tv_4) {
+            mControlWrapper.setSpeed(1.75f);
+            tv_1.setTextColor(getResources().getColor(R.color.white));
+            tv_2.setTextColor(getResources().getColor(R.color.white));
+            tv_3.setTextColor(getResources().getColor(R.color.white));
+            tv_4.setTextColor(getResources().getColor(R.color.dkplayer_theme_color));
+            tv_5.setTextColor(getResources().getColor(R.color.white));
+        } else if (id == R.id.tv_5) {
+            mControlWrapper.setSpeed(2.0f);
+            tv_1.setTextColor(getResources().getColor(R.color.white));
+            tv_2.setTextColor(getResources().getColor(R.color.white));
+            tv_3.setTextColor(getResources().getColor(R.color.white));
+            tv_4.setTextColor(getResources().getColor(R.color.white));
+            tv_5.setTextColor(getResources().getColor(R.color.dkplayer_theme_color));
         }
     }
 

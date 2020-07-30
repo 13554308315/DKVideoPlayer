@@ -73,11 +73,29 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             android:textSize="@dimen/dkplayer_controller_icon_padding"
-            android:text="1.5倍" />
+            android:text="1.25倍" />
         <TextView
             android:paddingLeft="4dp"
             android:gravity="center"
             android:id="@+id/tv_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/dkplayer_controller_icon_padding"
+            android:text="1.5倍" />
+        <TextView
+            android:paddingLeft="4dp"
+            android:gravity="center"
+            android:id="@+id/tv_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/dkplayer_controller_icon_padding"
+            android:text="1.75倍" />
+        <TextView
+            android:paddingLeft="4dp"
+            android:gravity="center"
+            android:id="@+id/tv_5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
