@@ -1,10 +1,10 @@
 project.ext {
-    releaseVersion = '3.2.6'
-    releaseVersionCode = 47
+    releaseVersion = '1.0.0'
+    releaseVersionCode = 1
 
-    minSdkVersion = 16
-    targetSdkVersion = 29
-    compileSdkVersion = 29
+    minSdkVersion = 19
+    targetSdkVersion = 28
+    compileSdkVersion = 28
     buildToolsVersion = '28.0.3'
 
     // App dependencies

@@ -1,10 +1,13 @@
 package com.dueeeke.videocontroller.component;
 
 import android.app.Activity;
+import android.app.AppOpsManager;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.nfc.Tag;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -235,6 +238,20 @@ public class VodControlView extends FrameLayout implements IControlComponent, Vi
             mTotalTime.setText(stringForTime(duration));
         if (mCurrTime != null)
             mCurrTime.setText(stringForTime(position));
+
+        onTimerChangeListener.onChange(position);
+
+    }
+
+    private OnTimerChangeListener onTimerChangeListener;
+
+    public void setOnTimerChangeListener(OnTimerChangeListener onTimerChangeListener) {
+        this.onTimerChangeListener = onTimerChangeListener;
+    }
+
+    //自定义播放时间监听接口
+    public interface OnTimerChangeListener {
+        void onChange(int time);
     }
 
     @Override

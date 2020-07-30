@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.net.Uri;
-import android.os.Bundle;
+import android.os.Build;
 import android.text.TextUtils;
 import android.view.Surface;
 import android.view.SurfaceHolder;
@@ -13,7 +13,8 @@ import android.view.SurfaceHolder;
 import com.dueeeke.videoplayer.player.AbstractPlayer;
 import com.dueeeke.videoplayer.player.VideoViewManager;
 
-import java.util.Map;
+import java.util.Map;import android.os.Bundle;
+
 
 import tv.danmaku.ijk.media.player.IMediaPlayer;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
@@ -68,6 +69,12 @@ public class IjkPlayer extends AbstractPlayer {
                     if (!TextUtils.isEmpty(userAgent)) {
                         mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "user_agent", userAgent);
                     }
+                }
+                // >6.0的情况 使用 避免变速变调
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "soundtouch", 0);
+                }else{
+                    mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "soundtouch", 1);
                 }
                 mMediaPlayer.setDataSource(mAppContext, uri, headers);
             }
